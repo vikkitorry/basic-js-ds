@@ -15,9 +15,8 @@ const { NotImplementedError, ListNode } = require('../extensions/index.js');
  */
 class Queue {
   constructor() {
-    this.head = head;
-    this.tail = tail;
-    this.length = 0;
+    this.head = null;
+    this.tail = null;
   }
 
   getUnderlyingList() {
@@ -31,17 +30,18 @@ class Queue {
       this.tail.next = node;
       this.tail = node;
     } else {
-
+      this.tail = node;
+      this.head = node;
     }
   }
 
   dequeue() {
-    const deleteHead = this.linkedList.deleteHead();
-    return ;
+    const deleteHead = this.head;
+    this.head = this.head.next;
+    return deleteHead.value;
   }
 }
-const a = new Queue(5)
-console.log(a.getUnderlyingList())
+
 module.exports = {
   Queue
 };
