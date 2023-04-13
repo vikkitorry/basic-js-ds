@@ -90,7 +90,7 @@ class BinarySearchTree {
       } else if (data > node.data) {
           node.right = removeNode(node.right, data);
           return node;
-      } else {
+      } else { //third option node with two children
         if (!node.right && !node.left) {
           node = null;
           return node;
@@ -104,7 +104,9 @@ class BinarySearchTree {
           return node;
         }
         let minNode = node.right;
-        if (minNode.left) { minNode = minNode.left}
+        if (Boolean(minNode.left)) {
+          minNode = minNode.left;
+        }
         node.data = minNode.data;
         node.right = removeNode(node.right, minNode.data)
         return node;
@@ -113,8 +115,7 @@ class BinarySearchTree {
   };
 
   min() {
-    let result = findMin(this.radix);
-    return result;
+    let minDig = findMin(this.radix);
     function findMin(node) {
       if (!node.left) {
         return node.data
@@ -122,11 +123,12 @@ class BinarySearchTree {
         return findMin(node.left)
       }
     }
+
+    return minDig;
   };
 
   max() {
-    let result = findMax(this.radix);
-    return result;
+    let maxDig = findMax(this.radix);
     function findMax(node) {
       if (!node.right) {
         return node.data
@@ -134,6 +136,8 @@ class BinarySearchTree {
         return findMax(node.right)
       }
     }
+
+    return maxDig;
   };
 }
 /*const tree = new BinarySearchTree()
